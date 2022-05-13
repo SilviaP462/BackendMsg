@@ -1,0 +1,26 @@
+package com.example.backend.repository;
+
+import com.example.backend.model.User;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+
+public interface UserRepository extends CrudRepository<User, Long> {
+
+    @Query("select u from User u where u.password=:password and u.username=:username")
+    User findAndValidate(@Param("password") String password, @Param("username") String username);
+
+
+    @Query("select u from User u where u.username=:username")
+    User findByUserName(@Param("username")String username);
+
+    @Query("select u.username from User u where u.username like CONCAT('%', :username, '%')")
+    List<String> getUserNamesLike(@Param("username")String toString);
+
+    @Query("select u.idUser from User u where u.username=:username")
+    Long findIdByUsername(@Param("username")String username);
+
+
+}
