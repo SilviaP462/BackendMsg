@@ -40,23 +40,9 @@ public class BackendApplication {
                     .antMatchers(HttpMethod.POST, "/register").permitAll()
                     .antMatchers(HttpMethod.POST, "/upload").permitAll()
                     .antMatchers(HttpMethod.GET, "/get/**").permitAll()
-                    .anyRequest().permitAll();
+                    .antMatchers(HttpMethod.GET, "/items/**").authenticated()
+                    .anyRequest().authenticated();
 
-
-            /*http.csrf().disable()
-                    .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
-                    .authorizeRequests()
-
-                    .antMatchers(HttpMethod.GET,"/notification/**").permitAll()
-                    .antMatchers(HttpMethod.PUT,"/notification/**").permitAll()
-                    .antMatchers(HttpMethod.POST, "/login").permitAll()
-                    .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                    .antMatchers(HttpMethod.POST, "/update/**").hasAuthority("USER_MANAGEMENT")
-                    .antMatchers("/bugs/**").hasAuthority("BUG_MANAGEMENT")
-                    .antMatchers(HttpMethod.GET, "/users").authenticated()
-                    .antMatchers("/roles/**").hasAuthority("PERMISSION_MANAGEMENT")
-                    .antMatchers("/users/**").hasAuthority("USER_MANAGEMENT")
-                    .anyRequest().authenticated();*/
         }
     }
 
