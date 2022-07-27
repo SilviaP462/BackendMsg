@@ -30,9 +30,9 @@ public class File {
     @Column(name = "picByte", length = 1000)
     private byte[] picByte;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    /*@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idUser", referencedColumnName = "idUser")
-    private User idUser;
+    private User idUser;*/
 
     public File(String name, String type, byte[] picByte) {
         this.name = name;

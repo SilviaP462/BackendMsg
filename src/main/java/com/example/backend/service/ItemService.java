@@ -28,11 +28,12 @@ public class ItemService {
     }
 
     @Transactional
-    public Boolean removeItem(Long id) {
+    public Item removeItem(Long id) {
         if (findItemById(id) == null)
-            return false;
+            return null;
        itemRepository.deleteById(id);
-        return true;
+       System.out.println(id);
+       return findItemById(id);
     }
 
     public Item findItemById(Long id) {

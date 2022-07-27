@@ -28,9 +28,16 @@ public class ItemController {
         return itemService.addItem(item);
     }
 
-    @DeleteMapping("/items/delete/")
-    public Boolean deleteItemById(@RequestBody Item item) {
-        return itemService.removeItem(item.getIdItem());
+    @DeleteMapping("/items/delete/{{idItem}}")
+    @ResponseStatus(HttpStatus.OK)
+    public Item deleteItemById1(@PathVariable("idItem") Long id) {
+        return itemService.removeItem(id);
+    }
+
+    @DeleteMapping("/items/ok")
+    //@ResponseStatus(HttpStatus.OK)
+    public Item deleteItemById(@RequestParam("idItem") Long id) {
+        return itemService.removeItem(id);
     }
 
     @PostMapping("/items/update/")

@@ -3,6 +3,7 @@ package com.example.backend.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "users")
@@ -10,11 +11,10 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_gen")
-    @SequenceGenerator(name = "users_gen", sequenceName = "users_seq", allocationSize = 1)
+    @GeneratedValue
+    /*@SequenceGenerator(name = "users_gen", sequenceName = "users_seq", allocationSize = 1)*/
     private Long idUser;
 
     @Column(nullable = false)
@@ -26,8 +26,6 @@ public class User {
 
     private String password;
     private String token;
-
-
 
 
 }
